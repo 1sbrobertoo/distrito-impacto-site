@@ -1,0 +1,54 @@
+{
+  "eventos": [
+    {
+      "id": 1,
+      "titulo": "Lançamento – Panorama do Ecossistema de Impacto DF 2026",
+      "descricao": "Apresentação dos dados e análises do primeiro relatório técnico sobre o ecossistema de impacto do Distrito Federal.",
+      "data": "2026-05-14",
+      "horario": "18h30",
+      "local": "Auditório do Impact Hub Brasília",
+      "tipo": "Lançamento",
+      "inscricao": ""
+    },
+    {
+      "id": 2,
+      "titulo": "Workshop: Como Medir e Comunicar Impacto Social",
+      "descricao": "Capacitação prática sobre metodologias de mensuração de impacto para organizações e negócios do DF.",
+      "data": "2026-05-28",
+      "horario": "14h00",
+      "local": "Online – Google Meet",
+      "tipo": "Capacitação",
+      "inscricao": ""
+    },
+    {
+      "id": 3,
+      "titulo": "Encontro da Comunidade Distrito de Impacto",
+      "descricao": "Primeiro encontro presencial da comunidade intencional do projeto para alinhamento de agenda e mobilização de parceiros.",
+      "data": "2026-06-10",
+      "horario": "19h00",
+      "local": "Brasília – DF (local a confirmar)",
+      "tipo": "Comunidade",
+      "inscricao": ""
+    },
+    {
+      "id": 4,
+      "titulo": "Mentoria Coletiva: Acesso a Capital de Impacto",
+      "descricao": "Sessão de mentoria aberta com investidores de impacto e gestores de fundos para tirar dúvidas sobre captação e estruturação.",
+      "data": "2026-06-25",
+      "horario": "16h00",
+      "local": "Online – Google Meet",
+      "tipo": "Mentoria",
+      "inscricao": ""
+    },
+    {
+      "id": 5,
+      "titulo": "Podcast ao Vivo: Políticas Públicas e Impacto no DF",
+      "descricao": "Gravação aberta do Podcast Distrito de Impacto com gestores públicos e lideranças do ecossistema.",
+      "data": "2026-07-08",
+      "horario": "18h00",
+      "local": "Brasília – DF",
+      "tipo": "Podcast",
+      "inscricao": ""
+    }
+  ]
+}
