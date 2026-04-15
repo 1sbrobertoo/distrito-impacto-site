@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mapeamento – Distrito de Impacto</title>
+  <meta name="description" content="Explore as organizações, negócios e iniciativas de impacto mapeadas no Distrito Federal."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/assets/css/style.css"/>
+  <style>
+    .empty-msg { color: var(--cinza-texto); font-size: 1rem; grid-column: 1/-1; padding: 2rem 0; }
+    .contador { max-width: 1200px; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--cinza-texto); font-weight: 500; }
+    .contador span { color: var(--verde); font-weight: 700; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Distrito<span>Impacto</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Início</a></li>
+    <li><a href="/manifesto/">Manifesto</a></li>
+    <li><a href="/mapeamento/" class="active">Mapeamento</a></li>
+    <li><a href="/eventos/">Eventos</a></li>
+    <li><a href="/quem-somos/">Quem Somos</a></li>
+    <li><a href="mailto:contato@distritodeimpacto.com" class="nav-cta">Cadastrar organização</a></li>
+  </ul>
+  <button class="nav-menu-btn">☰</button>
+</nav>
+
+<section class="hero" style="min-height:42vh; padding:80px 5%;">
+  <div class="hero-inner">
+    <span class="hero-tag">Plataforma de Dados · DF</span>
+    <h1>Mapeamento do<br/><span>Ecossistema de Impacto</span></h1>
+    <p>Explore organizações, negócios e iniciativas mapeadas no Distrito Federal. Filtre por tipo, área temática e estágio de maturidade.</p>
+  </div>
+</section>
+
+<section>
+  <div class="search-bar">
+    <input type="text" id="busca" placeholder="🔍  Buscar por nome ou descrição..."/>
+    <select id="filtro-tipo">
+      <option value="">Todos os tipos</option>
+      <option value="Instituto">Instituto</option>
+      <option value="Fundo de Investimento">Fundo de Investimento</option>
+      <option value="Rede">Rede</option>
+      <option value="Hub de Inovação">Hub de Inovação</option>
+      <option value="Cooperativa">Cooperativa</option>
+      <option value="Aceleradora">Aceleradora</option>
+    </select>
+    <select id="filtro-area">
+      <option value="">Todas as áreas</option>
+      <option value="Meio Ambiente">Meio Ambiente</option>
+      <option value="Finanças de Impacto">Finanças de Impacto</option>
+      <option value="Gênero e Inclusão">Gênero e Inclusão</option>
+      <option value="Inovação Pública">Inovação Pública</option>
+      <option value="Agroecologia">Agroecologia</option>
+      <option value="Empreendedorismo Social">Empreendedorismo Social</option>
+    </select>
+    <select id="filtro-maturidade">
+      <option value="">Todos os estágios</option>
+      <option value="Em Estruturação">Em Estruturação</option>
+      <option value="Em Crescimento">Em Crescimento</option>
+      <option value="Consolidada">Consolidada</option>
+    </select>
+  </div>
+
+  <div class="contador">
+    Mostrando <span id="total">0</span> organizações
+  </div>
+
+  <div id="org-cards" class="cards-grid">
+    <p class="empty-msg">Carregando organizações...</p>
+  </div>
+</section>
+
+<section style="background: var(--cinza-claro);">
+  <div style="max-width:700px; margin:0 auto; text-align:center;">
+    <div class="section-tag">Faça parte</div>
+    <h2 class="section-title">Sua organização ainda não está aqui?</h2>
+    <p class="section-desc" style="margin:0 auto 2rem;">Cadastre sua iniciativa, negócio ou organização no mapeamento do Distrito de Impacto e apareça para investidores, parceiros e gestores públicos.</p>
+    <a href="mailto:contato@distritodeimpacto.com" class="btn-primary" style="background:var(--verde);">Solicitar cadastro</a>
+  </div>
+</section>
+
+<footer style="background:#111; color:rgba(255,255,255,0.6); padding:3rem 5%; text-align:center;">
+  <p style="margin-bottom:0.5rem; color:#fff; font-weight:600;">Distrito de Impacto</p>
+  <p style="font-size:0.85rem;">Plataforma do ecossistema de impacto do Distrito Federal · 2026</p>
+  <p style="font-size:0.85rem; margin-top:0.5rem;">
+    <a href="/" style="color:rgba(255,255,255,0.5); margin:0 0.5rem;">Início</a>
+    <a href="/manifesto/" style="color:rgba(255,255,255,0.5); margin:0 0.5rem;">Manifesto</a>
+    <a href="/mapeamento/" style="color:rgba(255,255,255,0.5); margin:0 0.5rem;">Mapeamento</a>
+    <a href="/eventos/" style="color:rgba(255,255,255,0.5); margin:0 0.5rem;">Eventos</a>
+    <a href="/quem-somos/" style="color:rgba(255,255,255,0.5); margin:0 0.5rem;">Quem Somos</a>
+  </p>
+</footer>
+
+<script>
+async function carregarOrganizacoes() {
+  const container = document.getElementById('org-cards');
+  if (!container) return;
+  try {
+    const res = await fetch('/data/organizacoes.json');
+    const data = await res.json();
+    renderOrganizacoes(data.organizacoes);
+    configurarFiltros(data.organizacoes);
+  } catch (e) {
+    container.innerHTML = '<p class="empty-msg">Erro ao carregar dados.</p>';
+  }
+}
+
+function renderOrganizacoes(lista) {
+  const container = document.getElementById('org-cards');
+  const total = document.getElementById('total');
+  if (total) total.textContent = lista.length;
+  if (!lista.length) {
+    container.innerHTML = '<p class="empty-msg">Nenhuma organização encontrada com esses filtros.</p>';
+    return;
+  }
+  container.innerHTML = lista.map(org => `
+    <div class="card">
+      <span class="card-tag">${org.tipo}</span>
+      <h3>${org.nome}</h3>
+      <p>${org.descricao}</p>
+      <div class="card-meta">
+        <span>📍 ${org.cidade}</span>
+        <span>🌱 ${org.area}</span>
+        <span>📊 ${org.maturidade}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function configurarFiltros(lista) {
+  const busca = document.getElementById('busca');
+  const filtroTipo = document.getElementById('filtro-tipo');
+  const filtroArea = document.getElementById('filtro-area');
+  const filtroMaturidade = document.getElementById('filtro-maturidade');
+
+  function aplicarFiltros() {
+    const termo = busca ? busca.value.toLowerCase() : '';
+    const tipo = filtroTipo ? filtroTipo.value : '';
+    const area = filtroArea ? filtroArea.value : '';
+    const maturidade = filtroMaturidade ? filtroMaturidade.value : '';
+    const filtrado = lista.filter(org => {
+      const matchBusca = !termo || org.nome.toLowerCase().includes(termo) || org.descricao.toLowerCase().includes(termo);
+      const matchTipo = !tipo || org.tipo === tipo;
+      const matchArea = !area || org.area === area;
+      const matchMaturidade = !maturidade || org.maturidade === maturidade;
+      return matchBusca && matchTipo && matchArea && matchMaturidade;
+    });
+    renderOrganizacoes(filtrado);
+  }
+
+  if (busca) busca.addEventListener('input', aplicarFiltros);
+  if (filtroTipo) filtroTipo.addEventListener('change', aplicarFiltros);
+  if (filtroArea) filtroArea.addEventListener('change', aplicarFiltros);
+  if (filtroMaturidade) filtroMaturidade.addEventListener('change', aplicarFiltros);
+}
+
+document.addEventListener('DOMContentLoaded', carregarOrganizacoes);
+</script>
+
+</body>
+</html>
