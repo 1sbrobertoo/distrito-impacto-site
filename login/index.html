@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – Distrito de Impacto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    body { background: var(--cinza-claro); display: flex; flex-direction: column; min-height: 100vh; }
+    .auth-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; }
+    .auth-card { background: white; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); padding: 2.5rem 2rem; width: 100%; max-width: 420px; }
+    .auth-logo { text-align: center; margin-bottom: 1.5rem; font-size: 1.4rem; font-weight: 800; color: var(--preto); }
+    .auth-logo span { color: var(--verde); }
+    .auth-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .auth-sub { font-size: 0.9rem; color: var(--cinza-texto); margin-bottom: 1.8rem; }
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--preto); }
+    .form-group input { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--cinza-medio); border-radius: 8px; font-family: var(--fonte); font-size: 0.95rem; transition: border-color 0.2s; box-sizing: border-box; }
+    .form-group input:focus { outline: none; border-color: var(--verde); }
+    .btn-auth { width: 100%; padding: 0.85rem; background: var(--verde); color: white; border: none; border-radius: 8px; font-family: var(--fonte); font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+    .btn-auth:hover { background: var(--verde-escuro); }
+    .btn-auth:disabled { opacity: 0.6; cursor: not-allowed; }
+    .auth-links { text-align: center; margin-top: 1.2rem; font-size: 0.88rem; color: var(--cinza-texto); }
+    .auth-links a { color: var(--verde); font-weight: 600; text-decoration: none; }
+    .auth-links a:hover { text-decoration: underline; }
+    .auth-divider { border: none; border-top: 1px solid var(--cinza-medio); margin: 1.2rem 0; }
+    .msg-erro { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.88rem; margin-bottom: 1rem; display: none; }
+    .msg-erro.visible { display: block; }
+    .senha-toggle { position: relative; }
+    .senha-toggle input { padding-right: 2.8rem; }
+    .senha-toggle button { position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--cinza-texto); font-size: 1rem; }
+  </style>
+</head>
+<body>
+
+  <nav style="position: relative; box-shadow: 0 1px 8px rgba(0,0,0,0.08);">
+    <a href="/distrito-impacto-site/" class="nav-logo">Distrito<span>Impacto</span></a>
+    <ul class="nav-links">
+      <li><a href="/distrito-impacto-site/">Início</a></li>
+      <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
+      <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
+      <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
+      <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
+      <li><a href="/distrito-impacto-site/cadastro/" class="nav-cta">Cadastrar organização</a></li>
+    </ul>
+    <button class="nav-menu-btn">&#9776;</button>
+  </nav>
+
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-logo">Distrito<span>Impacto</span></div>
+      <div class="auth-title">Entrar na plataforma</div>
+      <div class="auth-sub">Acesse sua conta para gerenciar o perfil da sua organização.</div>
+
+      <div class="msg-erro" id="msg-erro"></div>
+
+      <form id="form-login" novalidate>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="seu@email.com" required autocomplete="email"/>
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <div class="senha-toggle">
+            <input type="password" id="senha" placeholder="Sua senha" required autocomplete="current-password"/>
+            <button type="button" onclick="toggleSenha('senha', this)">👁️</button>
+          </div>
+        </div>
+        <button type="submit" class="btn-auth" id="btn-login">Entrar</button>
+      </form>
+
+      <div class="auth-links" style="margin-top: 0.8rem;">
+        <a href="/distrito-impacto-site/recuperar-senha/">Esqueci minha senha</a>
+      </div>
+
+      <hr class="auth-divider"/>
+
+      <div class="auth-links">
+        Não tem conta? <a href="/distrito-impacto-site/cadastro/">Cadastre sua organização</a>
+      </div>
+    </div>
+  </div>
+
+  <footer style="padding: 1.5rem 5%; text-align: center; font-size: 0.82rem; color: var(--cinza-texto); border-top: 1px solid var(--cinza-medio);">
+    &copy; 2025 Distrito de Impacto
+  </footer>
+
+  <script type="module">
+    import { fazerLogin, monitorarAuth } from '../assets/js/firebase-config.js';
+
+    // Redireciona se ja logado
+    monitorarAuth(user => {
+      if (user) window.location.href = '/distrito-impacto-site/dashboard/';
+    });
+
+    function mostrarErro(msg) {
+      const el = document.getElementById('msg-erro');
+      el.textContent = msg;
+      el.classList.add('visible');
+    }
+
+    function traduzirErroFirebase(code) {
+      const erros = {
+        'auth/user-not-found': 'E-mail não encontrado. Verifique ou cadastre-se.',
+        'auth/wrong-password': 'Senha incorreta. Tente novamente.',
+        'auth/invalid-email': 'E-mail inválido.',
+        'auth/too-many-requests': 'Muitas tentativas. Aguarde alguns minutos.',
+        'auth/user-disabled': 'Conta desativada. Entre em contato.',
+        'auth/invalid-credential': 'E-mail ou senha incorretos.'
+      };
+      return erros[code] || 'Erro ao fazer login. Tente novamente.';
+    }
+
+    document.getElementById('form-login').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value;
+      const btn = document.getElementById('btn-login');
+
+      if (!email || !senha) {
+        mostrarErro('Preencha e-mail e senha.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Entrando...';
+      document.getElementById('msg-erro').classList.remove('visible');
+
+      try {
+        await fazerLogin(email, senha);
+        window.location.href = '/distrito-impacto-site/dashboard/';
+      } catch (err) {
+        mostrarErro(traduzirErroFirebase(err.code));
+        btn.disabled = false;
+        btn.textContent = 'Entrar';
+      }
+    });
+  </script>
+
+  <script>
+    function toggleSenha(id, btn) {
+      const input = document.getElementById(id);
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.textContent = '🙈';
+      } else {
+        input.type = 'password';
+        btn.textContent = '👁️';
+      }
+    }
+  </script>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
