@@ -11,12 +11,12 @@
 // ============================================
 
 const firebaseConfig = {
-  apiKey: "COLE_SUA_API_KEY_AQUI",
-  authDomain: "COLE_SEU_AUTH_DOMAIN_AQUI",
-  projectId: "COLE_SEU_PROJECT_ID_AQUI",
-  storageBucket: "COLE_SEU_STORAGE_BUCKET_AQUI",
-  messagingSenderId: "COLE_SEU_MESSAGING_SENDER_ID_AQUI",
-  appId: "COLE_SEU_APP_ID_AQUI"
+  apiKey: "AIzaSyAFbY5zBw6Oz5m2be4xq_sruYp1TygpPw0",
+  authDomain: "distrito-impacto.firebaseapp.com",
+  projectId: "distrito-impacto",
+  storageBucket: "distrito-impacto.firebasestorage.app",
+  messagingSenderId: "213278484200",
+  appId: "1:213278484200:web:352f305ef9827677a08b5d"
 };
 
 // Inicializa Firebase
