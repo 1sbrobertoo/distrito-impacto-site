@@ -7,64 +7,52 @@
       "area": "Meio Ambiente",
       "descricao": "Organização voltada à conservação do bioma Cerrado e geração de renda sustentável para comunidades rurais do DF.",
       "cidade": "Brasília – DF",
-      "maturidade": "Consolidada",
-      "site": "",
-      "contato": ""
+      "maturidade": "Consolidada"
     },
     {
       "id": 2,
       "nome": "Fundo Candango de Impacto",
       "tipo": "Fundo de Investimento",
       "area": "Finanças de Impacto",
-      "descricao": "Fundo de investimento de impacto focado em negócios de base comunitária no Distrito Federal e entorno.",
+      "descricao": "Fundo focado em negócios de base comunitária no Distrito Federal e entorno.",
       "cidade": "Brasília – DF",
-      "maturidade": "Em Crescimento",
-      "site": "",
-      "contato": ""
+      "maturidade": "Em Crescimento"
     },
     {
       "id": 3,
       "nome": "Rede Mulheres do Cerrado",
       "tipo": "Rede",
       "area": "Gênero e Inclusão",
-      "descricao": "Rede que conecta empreendedoras e lideranças femininas do DF para fortalecer negócios de impacto com recorte de gênero.",
+      "descricao": "Rede que conecta empreendedoras e lideranças femininas do DF para fortalecer negócios de impacto.",
       "cidade": "Ceilândia – DF",
-      "maturidade": "Em Estruturação",
-      "site": "",
-      "contato": ""
+      "maturidade": "Em Estruturação"
     },
     {
       "id": 4,
       "nome": "HubGov DF",
       "tipo": "Hub de Inovação",
       "area": "Inovação Pública",
-      "descricao": "Espaço de inovação que conecta governo, sociedade civil e setor privado para co-criação de soluções para políticas públicas do DF.",
+      "descricao": "Espaço que conecta governo, sociedade civil e setor privado para co-criação de soluções para políticas públicas.",
       "cidade": "Brasília – DF",
-      "maturidade": "Consolidada",
-      "site": "",
-      "contato": ""
+      "maturidade": "Consolidada"
     },
     {
       "id": 5,
       "nome": "Cooperativa Raízes do Cerrado",
       "tipo": "Cooperativa",
       "area": "Agroecologia",
-      "descricao": "Cooperativa de agricultores familiares que produz e comercializa alimentos agroecológicos certificados para mercados locais e institucionais.",
+      "descricao": "Cooperativa de agricultores familiares com alimentos agroecológicos certificados para mercados locais.",
       "cidade": "Planaltina – DF",
-      "maturidade": "Consolidada",
-      "site": "",
-      "contato": ""
+      "maturidade": "Consolidada"
     },
     {
       "id": 6,
       "nome": "Aceleradora Brasília+",
       "tipo": "Aceleradora",
       "area": "Empreendedorismo Social",
-      "descricao": "Programa de aceleração para startups e negócios de impacto em estágio inicial com foco em diversidade e periferia do DF.",
+      "descricao": "Programa de aceleração para startups e negócios de impacto com foco em diversidade e periferia do DF.",
       "cidade": "Taguatinga – DF",
-      "maturidade": "Em Crescimento",
-      "site": "",
-      "contato": ""
+      "maturidade": "Em Crescimento"
     }
   ]
 }
