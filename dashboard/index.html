@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard – Distrito de Impacto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <style>
+    body { background: var(--cinza-claro); min-height: 100vh; }
+    .dash-header { background: white; border-bottom: 1px solid var(--cinza-medio); padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+    .dash-logo { font-size: 1.2rem; font-weight: 800; color: var(--preto); }
+    .dash-logo span { color: var(--verde); }
+    .dash-user { display: flex; align-items: center; gap: 1rem; }
+    .btn-logout { padding: 0.5rem 1rem; background: transparent; border: 1.5px solid var(--cinza-medio); border-radius: 6px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+    .dash-container { max-width: 1100px; margin: 2rem auto; padding: 0 5%; }
+    .dash-welcome { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .dash-welcome h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .dash-welcome p { color: var(--cinza-texto); font-size: 0.95rem; }
+    .status-badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.78rem; font-weight: 700; margin-top: 0.8rem; }
+    .status-pendente { background: #fef3c7; color: #92400e; }
+    .status-aprovado { background: #d1fae5; color: #065f46; }
+    .dash-section { background: white; border-radius: 12px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .dash-section h2 { font-size: 1.3rem; margin-bottom: 1.5rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--cinza-medio); border-radius: 8px; font-family: var(--fonte); font-size: 0.95rem; box-sizing: border-box; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--verde); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .btn-save { padding: 0.9rem 2rem; background: var(--verde); color: white; border: none; border-radius: 8px; font-family: var(--fonte); font-size: 1rem; font-weight: 700; cursor: pointer; }
+    .btn-save:disabled { opacity: 0.6; cursor: not-allowed; }
+    .msg-sucesso { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.9rem; margin-bottom: 1.5rem; display: none; }
+    .msg-sucesso.visible { display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="dash-header">
+    <div class="dash-logo">Distrito<span>Impacto</span></div>
+    <div class="dash-user">
+      <span id="user-email" style="font-size: 0.85rem; color: var(--cinza-texto);"></span>
+      <button class="btn-logout" onclick="logout()">Sair</button>
+    </div>
+  </div>
+
+  <div class="dash-container">
+    <div class="dash-welcome">
+      <h1>Bem-vindo(a), <span id="org-nome">Carregando...</span>!</h1>
+      <p>Gerencie as informações da sua organização no ecossistema de impacto do DF.</p>
+      <div id="status-container"></div>
+    </div>
+
+    <div class="dash-section">
+      <h2>Dados da Organização</h2>
+      <div class="msg-sucesso" id="msg-sucesso">Dados salvos com sucesso!</div>
+
+      <form id="form-org" novalidate>
+        <div class="form-group">
+          <label>Nome da organização *</label>
+          <input type="text" id="nomeOrganizacao" required/>
+        </div>
+        <div class="form-group">
+          <label>Tipo *</label>
+          <select id="tipo" required>
+            <option value="ong">ONG / Associação</option>
+            <option value="startup">Startup de Impacto</option>
+            <option value="empresa">Empresa B / ESG</option>
+            <option value="fundo">Fundo / Investidor</option>
+            <option value="academia">Academia / Pesquisa</option>
+            <option value="poder-publico">Poder Público</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Região Administrativa *</label>
+          <input type="text" id="regiao" required/>
+        </div>
+        <div class="form-group">
+          <label>Descrição breve *</label>
+          <textarea id="descricao" required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Nome do responsável</label>
+          <input type="text" id="nomeResponsavel"/>
+        </div>
+        <div class="form-group">
+          <label>Telefone</label>
+          <input type="tel" id="telefone"/>
+        </div>
+        <button type="submit" class="btn-save" id="btn-save">Salvar alterações</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { monitorarAuth, fazerLogout, buscarOrganizacaoPorUid, atualizarOrganizacao } from '../assets/js/firebase-config.js';
+
+    let orgId = null;
+
+    monitorarAuth(async (user) => {
+      if (!user) {
+        window.location.href = '/distrito-impacto-site/login/';
+        return;
+      }
+
+      document.getElementById('user-email').textContent = user.email;
+
+      const org = await buscarOrganizacaoPorUid(user.uid);
+      if (!org) {
+        alert('Organização não encontrada.');
+        return;
+      }
+
+      orgId = org.id;
+      document.getElementById('org-nome').textContent = org.nomeOrganizacao;
+      document.getElementById('nomeOrganizacao').value = org.nomeOrganizacao || '';
+      document.getElementById('tipo').value = org.tipo || '';
+      document.getElementById('regiao').value = org.regiao || '';
+      document.getElementById('descricao').value = org.descricao || '';
+      document.getElementById('nomeResponsavel').value = org.nomeResponsavel || '';
+      document.getElementById('telefone').value = org.telefone || '';
+
+      const statusMap = {
+        'pendente': '<span class="status-badge status-pendente">🕒 Aguardando aprovação</span>',
+        'aprovado': '<span class="status-badge status-aprovado">✅ Aprovado - visível no mapa</span>'
+      };
+      document.getElementById('status-container').innerHTML = statusMap[org.status] || '';
+    });
+
+    document.getElementById('form-org').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btn-save');
+      btn.disabled = true;
+      btn.textContent = 'Salvando...';
+
+      const dados = {
+        nomeOrganizacao: document.getElementById('nomeOrganizacao').value.trim(),
+        tipo: document.getElementById('tipo').value,
+        regiao: document.getElementById('regiao').value.trim(),
+        descricao: document.getElementById('descricao').value.trim(),
+        nomeResponsavel: document.getElementById('nomeResponsavel').value.trim(),
+        telefone: document.getElementById('telefone').value.trim()
+      };
+
+      try {
+        await atualizarOrganizacao(orgId, dados);
+        document.getElementById('msg-sucesso').classList.add('visible');
+        setTimeout(() => document.getElementById('msg-sucesso').classList.remove('visible'), 3000);
+      } catch (err) {
+        alert('Erro ao salvar. Tente novamente.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Salvar alterações';
+      }
+    });
+
+    window.logout = async function() {
+      await fazerLogout();
+      window.location.href = '/distrito-impacto-site/';
+    };
+  </script>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
