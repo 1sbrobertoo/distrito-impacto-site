@@ -1,0 +1,70 @@
+{
+  "organizacoes": [
+    {
+      "id": 1,
+      "nome": "Instituto Cerrado Vivo",
+      "tipo": "Instituto",
+      "area": "Meio Ambiente",
+      "descricao": "Organização voltada à conservação do bioma Cerrado e geração de renda sustentável para comunidades rurais do DF.",
+      "cidade": "Brasília – DF",
+      "maturidade": "Consolidada",
+      "site": "",
+      "contato": ""
+    },
+    {
+      "id": 2,
+      "nome": "Fundo Candango de Impacto",
+      "tipo": "Fundo de Investimento",
+      "area": "Finanças de Impacto",
+      "descricao": "Fundo de investimento de impacto focado em negócios de base comunitária no Distrito Federal e entorno.",
+      "cidade": "Brasília – DF",
+      "maturidade": "Em Crescimento",
+      "site": "",
+      "contato": ""
+    },
+    {
+      "id": 3,
+      "nome": "Rede Mulheres do Cerrado",
+      "tipo": "Rede",
+      "area": "Gênero e Inclusão",
+      "descricao": "Rede que conecta empreendedoras e lideranças femininas do DF para fortalecer negócios de impacto com recorte de gênero.",
+      "cidade": "Ceilândia – DF",
+      "maturidade": "Em Estruturação",
+      "site": "",
+      "contato": ""
+    },
+    {
+      "id": 4,
+      "nome": "HubGov DF",
+      "tipo": "Hub de Inovação",
+      "area": "Inovação Pública",
+      "descricao": "Espaço de inovação que conecta governo, sociedade civil e setor privado para co-criação de soluções para políticas públicas do DF.",
+      "cidade": "Brasília – DF",
+      "maturidade": "Consolidada",
+      "site": "",
+      "contato": ""
+    },
+    {
+      "id": 5,
+      "nome": "Cooperativa Raízes do Cerrado",
+      "tipo": "Cooperativa",
+      "area": "Agroecologia",
+      "descricao": "Cooperativa de agricultores familiares que produz e comercializa alimentos agroecológicos certificados para mercados locais e institucionais.",
+      "cidade": "Planaltina – DF",
+      "maturidade": "Consolidada",
+      "site": "",
+      "contato": ""
+    },
+    {
+      "id": 6,
+      "nome": "Aceleradora Brasília+",
+      "tipo": "Aceleradora",
+      "area": "Empreendedorismo Social",
+      "descricao": "Programa de aceleração para startups e negócios de impacto em estágio inicial com foco em diversidade e periferia do DF.",
+      "cidade": "Taguatinga – DF",
+      "maturidade": "Em Crescimento",
+      "site": "",
+      "contato": ""
+    }
+  ]
+}
