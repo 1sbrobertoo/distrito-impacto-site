@@ -7,60 +7,64 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css?v=3"/>
   <style>
-    body { background: var(--cinza-claro); }
-    .cad-wrap { padding: 3rem 5% 5rem; max-width: 800px; margin: 0 auto; }
-    .cad-card { background: white; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); padding: 3rem 2.5rem; }
-    .cad-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .cad-sub { font-size: 1rem; color: var(--cinza-texto); margin-bottom: 2rem; line-height: 1.5; }
-    .form-section { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--cinza-medio); }
+    body { background: var(--color-surface-muted); }
+    .cad-wrap { padding: 3rem 1rem 5rem; max-width: 800px; margin: 0 auto; }
+    .cad-card { background: white; border-radius: var(--radius); box-shadow: 0 4px 24px rgba(0,0,0,0.10); padding: 3rem 2.5rem; }
+    .cad-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-dark); }
+    .cad-sub { font-size: 1rem; color: #666; margin-bottom: 2rem; line-height: 1.5; }
+    .form-section { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #eee; }
     .form-section:last-child { border: none; }
-    .form-section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+    .form-section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--color-dark); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
     @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
     .form-group { margin-bottom: 1rem; }
     .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--cinza-medio); border-radius: 8px; font-family: var(--fonte); font-size: 0.95rem; box-sizing: border-box; }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--verde); }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #ddd; border-radius: 8px; font-family: var(--font-main); font-size: 0.95rem; box-sizing: border-box; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--color-primary); }
     .form-group textarea { resize: vertical; min-height: 100px; }
-    .btn-cad { width: 100%; padding: 1rem; background: var(--verde); color: white; border: none; border-radius: 8px; font-family: var(--fonte); font-size: 1.1rem; font-weight: 700; cursor: pointer; }
+    .btn-cad { width: 100%; padding: 1rem; background: var(--color-primary); color: white; border: none; border-radius: 8px; font-family: var(--font-main); font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+    .btn-cad:hover { background: #00a857; }
     .btn-cad:disabled { opacity: 0.6; cursor: not-allowed; }
-    .auth-links { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--cinza-texto); }
-    .auth-links a { color: var(--verde); font-weight: 600; text-decoration: none; }
+    .auth-links { text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: #666; }
+    .auth-links a { color: var(--color-primary); font-weight: 600; text-decoration: none; }
     .msg-erro { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.9rem; margin-bottom: 1.5rem; display: none; }
     .msg-erro.visible { display: block; }
   </style>
 </head>
 <body>
   <nav>
-    <a href="/distrito-impacto-site/" class="nav-logo">Distrito<span>Impacto</span></a>
-    <ul class="nav-links">
-      <li><a href="/distrito-impacto-site/">Início</a></li>
-      <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
-      <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
-      <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
-      <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
-      <li><a href="/distrito-impacto-site/login/">Login</a></li>
-    </ul>
-    <button class="nav-menu-btn">&#9776;</button>
+    <div class="container nav-container">
+      <a href="/distrito-impacto-site/" class="nav-logo">Distrito<span>Impacto</span></a>
+      <ul class="nav-links">
+        <li><a href="/distrito-impacto-site/">Início</a></li>
+        <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
+        <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
+        <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
+        <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
+        <li><a href="/distrito-impacto-site/mapeamento/" class="nav-cta active">Cadastrar organização</a></li>
+        <li><a href="/distrito-impacto-site/login/" style="color:white; font-weight:700;">Entrar</a></li>
+      </ul>
+      <button class="nav-menu-btn">&#9776;</button>
+    </div>
   </nav>
 
   <div class="cad-wrap">
     <div class="cad-card">
-      <div class="cad-title">Cadastre sua organização</div>
-      <div class="cad-sub">Preencha as informações abaixo para criar sua conta e aparecer no mapeamento do ecossistema de impacto do DF.</div>
+      <h1 class="cad-title">Cadastre sua organização</h1>
+      <p class="cad-sub">Preencha as informações abaixo para criar sua conta e aparecer no mapeamento do ecossistema de impacto do DF.</p>
 
-      <div class="msg-erro" id="msg-erro"></div>
+      <div id="msg-erro" class="msg-erro"></div>
 
-      <form id="form-cadastro" novalidate>
+      <form id="form-cadastro">
         <div class="form-section">
           <div class="form-section-title">Dados da organização</div>
-          <div class="form-group">
-            <label>Nome da organização *</label>
-            <input type="text" id="nomeOrganizacao" required placeholder="Ex: Instituto Exemplo"/>
-          </div>
           <div class="form-row">
+            <div class="form-group">
+              <label>Nome da organização *</label>
+              <input type="text" id="nomeOrganizacao" required placeholder="Ex: Instituto Exemplo"/>
+            </div>
             <div class="form-group">
               <label>Tipo *</label>
               <select id="tipo" required>
@@ -74,10 +78,10 @@
                 <option value="outro">Outro</option>
               </select>
             </div>
-            <div class="form-group">
-              <label>Região Administrativa *</label>
-              <input type="text" id="regiao" required placeholder="Ex: Brasília, Taguatinga..."/>
-            </div>
+          </div>
+          <div class="form-group">
+            <label>Região Administrativa *</label>
+            <input type="text" id="regiao" required placeholder="Ex: Brasília, Taguatinga..."/>
           </div>
           <div class="form-group">
             <label>Descrição breve *</label>
@@ -87,9 +91,15 @@
 
         <div class="form-section">
           <div class="form-section-title">Responsável</div>
-          <div class="form-group">
-            <label>Nome completo *</label>
-            <input type="text" id="nomeResponsavel" required placeholder="Seu nome completo"/>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome completo *</label>
+              <input type="text" id="nomeResponsavel" required placeholder="Seu nome completo"/>
+            </div>
+            <div class="form-group">
+              <label>Telefone</label>
+              <input type="tel" id="telefone" placeholder="(61) 99999-9999"/>
+            </div>
           </div>
           <div class="form-row">
             <div class="form-group">
@@ -97,38 +107,30 @@
               <input type="email" id="email" required placeholder="seu@email.com" autocomplete="email"/>
             </div>
             <div class="form-group">
-              <label>Telefone</label>
-              <input type="tel" id="telefone" placeholder="(61) 99999-9999"/>
+              <label>Senha *</label>
+              <input type="password" id="senha" required placeholder="Mínimo 6 caracteres" autocomplete="new-password"/>
             </div>
-          </div>
-          <div class="form-group">
-            <label>Senha *</label>
-            <input type="password" id="senha" required placeholder="Mínimo 6 caracteres" autocomplete="new-password"/>
           </div>
         </div>
 
-        <button type="submit" class="btn-cad" id="btn-cadastro">Criar conta</button>
+        <button type="submit" id="btn-cadastro" class="btn-cad">Criar conta</button>
       </form>
 
-      <div class="auth-links">
-        Já tem conta? <a href="/distrito-impacto-site/login/">Faça login</a>
-      </div>
+      <div class="auth-links">Já tem conta? <a href="/distrito-impacto-site/login/">Faça login</a></div>
     </div>
   </div>
 
-  <footer style="padding: 2rem 5%; text-align: center; font-size: 0.85rem; color: var(--cinza-texto); border-top: 1px solid var(--cinza-medio);">
-    &copy; 2025 Distrito de Impacto
+  <footer style="text-align:center;padding:1.5rem;font-size:0.85rem;color:rgba(255,255,255,0.5);background:var(--color-dark);">
+    © 2025 Distrito de Impacto
   </footer>
 
   <script type="module">
     import { registrarUsuario, salvarOrganizacao } from '../assets/js/firebase-config.js';
-
     document.getElementById('form-cadastro').addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btn-cadastro');
       const erroEl = document.getElementById('msg-erro');
       erroEl.classList.remove('visible');
-
       const dados = {
         nomeOrganizacao: document.getElementById('nomeOrganizacao').value.trim(),
         tipo: document.getElementById('tipo').value,
@@ -139,22 +141,15 @@
         telefone: document.getElementById('telefone').value.trim(),
         senha: document.getElementById('senha').value
       };
-
       if (!dados.nomeOrganizacao || !dados.tipo || !dados.regiao || !dados.descricao || !dados.nomeResponsavel || !dados.email || !dados.senha) {
         erroEl.textContent = 'Preencha todos os campos obrigatórios.';
-        erroEl.classList.add('visible');
-        return;
+        erroEl.classList.add('visible'); return;
       }
-
       if (dados.senha.length < 6) {
         erroEl.textContent = 'A senha deve ter pelo menos 6 caracteres.';
-        erroEl.classList.add('visible');
-        return;
+        erroEl.classList.add('visible'); return;
       }
-
-      btn.disabled = true;
-      btn.textContent = 'Criando conta...';
-
+      btn.disabled = true; btn.textContent = 'Criando conta...';
       try {
         const userCredential = await registrarUsuario(dados.email, dados.senha);
         const uid = userCredential.user.uid;
@@ -163,19 +158,12 @@
         alert('Conta criada com sucesso! Faça login para continuar.');
         window.location.href = '/distrito-impacto-site/login/';
       } catch (err) {
-        const erros = {
-          'auth/email-already-in-use': 'Este e-mail já está cadastrado.',
-          'auth/invalid-email': 'E-mail inválido.',
-          'auth/weak-password': 'Senha muito fraca. Use pelo menos 6 caracteres.'
-        };
+        const erros = { 'auth/email-already-in-use':'Este e-mail já está cadastrado.','auth/invalid-email':'E-mail inválido.','auth/weak-password':'Senha muito fraca.' };
         erroEl.textContent = erros[err.code] || 'Erro ao criar conta. Tente novamente.';
         erroEl.classList.add('visible');
-        btn.disabled = false;
-        btn.textContent = 'Criar conta';
+        btn.disabled = false; btn.textContent = 'Criar conta';
       }
     });
   </script>
-
-  <script src="../assets/js/main.js"></script>
 </body>
 </html>
