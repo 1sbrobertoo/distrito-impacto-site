@@ -7,44 +7,47 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css?v=3"/>
   <style>
-    body { background: var(--cinza-claro); display: flex; flex-direction: column; min-height: 100vh; }
+    body { background: var(--color-surface-muted); display: flex; flex-direction: column; min-height: 100vh; }
     .auth-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; }
-    .auth-card { background: white; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.10); padding: 2.5rem 2rem; width: 100%; max-width: 420px; }
-    .auth-logo { text-align: center; margin-bottom: 1.5rem; font-size: 1.4rem; font-weight: 800; color: var(--preto); }
-    .auth-logo span { color: var(--verde); }
-    .auth-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .auth-sub { font-size: 0.9rem; color: var(--cinza-texto); margin-bottom: 1.8rem; line-height: 1.5; }
+    .auth-card { background: white; border-radius: var(--radius); box-shadow: 0 4px 32px rgba(0,0,0,0.12); padding: 2.5rem 2rem; width: 100%; max-width: 420px; }
+    .auth-logo { text-align: center; margin-bottom: 1.5rem; font-size: 1.4rem; font-weight: 800; color: var(--color-dark); }
+    .auth-logo span { color: var(--color-primary); }
+    .auth-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--color-dark); }
+    .auth-sub { font-size: 0.9rem; color: #666; margin-bottom: 1.8rem; line-height: 1.5; }
     .form-group { margin-bottom: 1.1rem; }
-    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--preto); }
-    .form-group input { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid var(--cinza-medio); border-radius: 8px; font-family: var(--fonte); font-size: 0.95rem; transition: border-color 0.2s; box-sizing: border-box; }
-    .form-group input:focus { outline: none; border-color: var(--verde); }
-    .btn-auth { width: 100%; padding: 0.85rem; background: var(--verde); color: white; border: none; border-radius: 8px; font-family: var(--fonte); font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
-    .btn-auth:hover { background: var(--verde-escuro); }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .form-group input { width: 100%; padding: 0.75rem 1rem; border: 1.5px solid #ddd; border-radius: 8px; font-family: var(--font-main); font-size: 0.95rem; transition: border-color 0.2s; box-sizing: border-box; }
+    .form-group input:focus { outline: none; border-color: var(--color-primary); }
+    .btn-auth { width: 100%; padding: 0.85rem; background: var(--color-primary); color: white; border: none; border-radius: 8px; font-family: var(--font-main); font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+    .btn-auth:hover { background: #00a857; }
     .btn-auth:disabled { opacity: 0.6; cursor: not-allowed; }
-    .auth-links { text-align: center; margin-top: 1.2rem; font-size: 0.88rem; color: var(--cinza-texto); }
-    .auth-links a { color: var(--verde); font-weight: 600; text-decoration: none; }
+    .auth-links { text-align: center; margin-top: 1.2rem; font-size: 0.88rem; color: #666; }
+    .auth-links a { color: var(--color-primary); font-weight: 600; text-decoration: none; }
+    .auth-links a:hover { text-decoration: underline; }
     .msg-erro { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; border-radius: 8px; padding: 0.75rem 1rem; font-size: 0.88rem; margin-bottom: 1rem; display: none; }
     .msg-erro.visible { display: block; }
-    .msg-sucesso { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; border-radius: 8px; padding: 1rem; font-size: 0.9rem; text-align: center; display: none; }
+    .msg-sucesso { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; border-radius: 8px; padding: 1.5rem; font-size: 0.9rem; text-align: center; display: none; }
     .msg-sucesso.visible { display: block; }
-    .msg-sucesso .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .msg-sucesso .icon { font-size: 2.5rem; margin-bottom: 0.5rem; display: block; }
   </style>
 </head>
 <body>
-
-  <nav style="position: relative; box-shadow: 0 1px 8px rgba(0,0,0,0.08);">
-    <a href="/distrito-impacto-site/" class="nav-logo">Distrito<span>Impacto</span></a>
-    <ul class="nav-links">
-      <li><a href="/distrito-impacto-site/">Início</a></li>
-      <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
-      <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
-      <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
-      <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
-      <li><a href="/distrito-impacto-site/cadastro/" class="nav-cta">Cadastrar organização</a></li>
-    </ul>
-    <button class="nav-menu-btn">&#9776;</button>
+  <nav>
+    <div class="container nav-container">
+      <a href="/distrito-impacto-site/" class="nav-logo">Distrito<span>Impacto</span></a>
+      <ul class="nav-links">
+        <li><a href="/distrito-impacto-site/">Início</a></li>
+        <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
+        <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
+        <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
+        <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
+        <li><a href="/distrito-impacto-site/mapeamento/" class="nav-cta">Cadastrar organização</a></li>
+        <li><a href="/distrito-impacto-site/login/" style="color:white; font-weight:700;">Entrar</a></li>
+      </ul>
+      <button class="nav-menu-btn">&#9776;</button>
+    </div>
   </nav>
 
   <div class="auth-wrap">
@@ -53,71 +56,52 @@
       <div class="auth-title">Recuperar senha</div>
       <div class="auth-sub">Informe seu e-mail cadastrado e enviaremos um link para você criar uma nova senha.</div>
 
-      <div class="msg-erro" id="msg-erro"></div>
+      <div id="msg-erro" class="msg-erro"></div>
 
-      <div class="msg-sucesso" id="msg-sucesso">
-        <div class="icon">✅</div>
+      <div id="msg-sucesso" class="msg-sucesso">
+        <span class="icon">✅</span>
         <strong>E-mail enviado!</strong><br/>
         Verifique sua caixa de entrada e siga as instruções para redefinir sua senha.
       </div>
 
-      <form id="form-recuperar" novalidate>
+      <form id="form-recuperar">
         <div class="form-group">
           <label for="email">E-mail</label>
           <input type="email" id="email" placeholder="seu@email.com" required autocomplete="email"/>
         </div>
-        <button type="submit" class="btn-auth" id="btn-recuperar">Enviar link de recuperação</button>
+        <button type="submit" id="btn-recuperar" class="btn-auth">Enviar link de recuperação</button>
       </form>
 
-      <div class="auth-links" style="margin-top: 1.2rem;">
-        <a href="/distrito-impacto-site/login/">&larr; Voltar para o login</a>
-      </div>
+      <div class="auth-links"><a href="/distrito-impacto-site/login/">← Voltar para o login</a></div>
     </div>
   </div>
 
-  <footer style="padding: 1.5rem 5%; text-align: center; font-size: 0.82rem; color: var(--cinza-texto); border-top: 1px solid var(--cinza-medio);">
-    &copy; 2025 Distrito de Impacto
+  <footer style="text-align:center;padding:1.5rem;font-size:0.85rem;color:rgba(255,255,255,0.5);background:var(--color-dark);">
+    © 2025 Distrito de Impacto
   </footer>
 
   <script type="module">
     import { recuperarSenha } from '../assets/js/firebase-config.js';
-
     document.getElementById('form-recuperar').addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('email').value.trim();
       const btn = document.getElementById('btn-recuperar');
       const erroEl = document.getElementById('msg-erro');
       const sucessoEl = document.getElementById('msg-sucesso');
-
       erroEl.classList.remove('visible');
-      sucessoEl.classList.remove('visible');
-
-      if (!email) {
-        erroEl.textContent = 'Informe seu e-mail.';
-        erroEl.classList.add('visible');
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Enviando...';
-
+      if (!email) { erroEl.textContent = 'Informe seu e-mail.'; erroEl.classList.add('visible'); return; }
+      btn.disabled = true; btn.textContent = 'Enviando...';
       try {
         await recuperarSenha(email);
         document.getElementById('form-recuperar').style.display = 'none';
         sucessoEl.classList.add('visible');
       } catch (err) {
-        const erros = {
-          'auth/user-not-found': 'E-mail não encontrado na plataforma.',
-          'auth/invalid-email': 'E-mail inválido.'
-        };
+        const erros = { 'auth/user-not-found':'E-mail não encontrado.','auth/invalid-email':'E-mail inválido.' };
         erroEl.textContent = erros[err.code] || 'Erro ao enviar e-mail. Tente novamente.';
         erroEl.classList.add('visible');
-        btn.disabled = false;
-        btn.textContent = 'Enviar link de recuperação';
+        btn.disabled = false; btn.textContent = 'Enviar link de recuperação';
       }
     });
   </script>
-
-  <script src="../assets/js/main.js"></script>
 </body>
 </html>
