@@ -8,79 +8,90 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css?v=3"/>
 </head>
 <body>
-
   <nav>
-    <a href="/distrito-impacto-site/" class="nav-logo">Distrito<span>Impacto</span></a>
-    <ul class="nav-links">
-      <li><a href="/distrito-impacto-site/">Início</a></li>
-      <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
-      <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
-      <li><a href="/distrito-impacto-site/eventos/" class="active">Eventos</a></li>
-      <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
-      <li><a href="/distrito-impacto-site/mapeamento/" class="nav-cta">Cadastrar organização</a></li>
-    </ul>
-    <button class="nav-menu-btn">&#9776;</button>
+    <div class="container nav-container">
+      <a href="/distrito-impacto-site/" class="nav-logo">Distrito<span>Impacto</span></a>
+      <ul class="nav-links">
+        <li><a href="/distrito-impacto-site/">Início</a></li>
+        <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
+        <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
+        <li><a href="/distrito-impacto-site/eventos/" class="active">Eventos</a></li>
+        <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
+        <li><a href="/distrito-impacto-site/mapeamento/" class="nav-cta">Cadastrar organização</a></li>
+      </ul>
+      <button class="nav-menu-btn">&#9776;</button>
+    </div>
   </nav>
 
-  <section class="hero" style="min-height: 40vh; padding: 80px 5%;">
-    <div class="hero-inner">
-      <span class="hero-tag">Agenda Pública</span>
-      <h1>Eventos e <span>Capacitações</span></h1>
-      <p>Uma agenda aberta para qualificar iniciativas, fortalecer vínculos e ampliar a capacidade do ecossistema de impacto do DF.</p>
+  <section class="hero" style="min-height: 42vh; padding: 80px 0;">
+    <div class="container">
+      <div class="hero-inner">
+        <span class="hero-tag">Agenda Pública</span>
+        <h1>Eventos e <span>Capacitações</span></h1>
+        <p>Uma agenda aberta para qualificar iniciativas, fortalecer vínculos e ampliar a capacidade do ecossistema de impacto do DF.</p>
+      </div>
     </div>
   </section>
 
-  <section class="sobre">
+  <section style="padding: 5rem 0;">
     <div class="container">
-      <h2>Próximos eventos</h2>
-      <p>Acompanhe os eventos, workshops e encontros organizados pelo Distrito de Impacto e pelo ecossistema.</p>
-
-      <div id="eventos-lista" class="cards" style="margin-top: 2rem;">
+      <div class="section-header">
+        <h2 class="section-title">Próximos eventos</h2>
+        <p>Acompanhe os eventos, workshops e encontros organizados pelo Distrito de Impacto e pelo ecossistema.</p>
+      </div>
+      <div class="cards-grid" id="eventos-lista">
         <div class="card">
-          <div class="card-icon">🗓️</div>
-          <h4>Panorama 2026 – Workshop de Mapeamento</h4>
+          <span class="card-tag">🗓️ Workshop</span>
+          <h3>Panorama 2026 – Workshop de Mapeamento</h3>
           <p><strong>Em breve</strong> &middot; Brasília, DF</p>
           <p>Workshop colaborativo para construção coletiva do Panorama do Ecossistema de Impacto do DF 2026.</p>
         </div>
         <div class="card">
-          <div class="card-icon">🏫</div>
-          <h4>Capacitação em Gestão de Impacto</h4>
+          <span class="card-tag">🏫 Capacitação</span>
+          <h3>Capacitação em Gestão de Impacto</h3>
           <p><strong>Em breve</strong> &middot; Online</p>
           <p>Formação prática sobre ferramentas e metodologias de gestão e mensuração de impacto social.</p>
         </div>
         <div class="card">
-          <div class="card-icon">🤝</div>
-          <h4>Encontro do Ecossistema DF</h4>
+          <span class="card-tag">🤝 Encontro</span>
+          <h3>Encontro do Ecossistema DF</h3>
           <p><strong>Em breve</strong> &middot; Brasília, DF</p>
           <p>Encontro trimestral de articulação entre organizações, empreendedores e investidores de impacto do DF.</p>
         </div>
       </div>
 
-      <div style="margin-top: 3rem; padding: 2rem; background: var(--cinza-claro); border-radius: var(--raio); text-align: center;">
-        <h3>Organize um evento com a gente</h3>
-        <p style="margin-top: 1rem;">Tem uma iniciativa ou evento que quer conectar ao ecossistema de impacto do DF? Entre em contato.</p>
-        <a href="mailto:contato@distritodeimpacto.org" class="btn-primary" style="display: inline-block; margin-top: 1.5rem;">Entrar em contato</a>
+      <div style="margin-top: 4rem; padding: 3rem; background: var(--color-surface-soft); border-radius: var(--radius); text-align: center;">
+        <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Organize um evento com a gente</h3>
+        <p style="color: #555; margin-bottom: 1.5rem;">Tem uma iniciativa ou evento que quer conectar ao ecossistema de impacto do DF? Entre em contato.</p>
+        <a href="mailto:contato@distritodeimpacto.org" class="btn btn-primary">Entrar em contato</a>
       </div>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <div class="footer-logo">Distrito<span>Impacto</span></div>
-      <p>Plataforma do ecossistema de impacto do Distrito Federal.</p>
-      <ul class="footer-links">
-        <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
-        <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
-        <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
-        <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
-      </ul>
-      <p class="footer-copy">&copy; 2025 Distrito de Impacto &middot; Todos os direitos reservados</p>
+      <div class="footer-top">
+        <div class="footer-about">
+          <div class="footer-logo">Distrito<span>Impacto</span></div>
+          <p>Plataforma do ecossistema de impacto do Distrito Federal.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
+            <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
+            <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
+            <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Distrito de Impacto · Todos os direitos reservados</span>
+      </div>
     </div>
   </footer>
-
-  <script src="../assets/js/main.js"></script>
 </body>
 </html>
