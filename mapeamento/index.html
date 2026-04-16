@@ -8,124 +8,133 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <link rel="stylesheet" href="../assets/css/style.css?v=3"/>
   <style>
-    .empty-msg { color: var(--cinza-texto); font-size: 1rem; grid-column: 1/-1; padding: 2rem 0; }
-    .contador { max-width: 1200px; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--cinza-texto); font-weight: 500; }
-    .contador span { color: var(--verde); font-weight: 700; }
+    .empty-msg { color: var(--color-dark); font-size: 1rem; grid-column: 1/-1; padding: 2rem 0; opacity: 0.6; }
+    .contador { max-width: 1200px; margin: 0 auto 1.5rem; font-size: 0.9rem; color: var(--color-dark); font-weight: 500; opacity: 0.7; }
+    .contador span { color: var(--color-primary); font-weight: 700; opacity: 1; }
     .mapa-filtros { max-width: 1200px; margin: 0 auto 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
-    .filtro-btn { padding: 0.5rem 1.2rem; border: 2px solid var(--cinza-medio); border-radius: 50px; background: white; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
-    .filtro-btn.active, .filtro-btn:hover { border-color: var(--verde); background: var(--verde); color: white; }
+    .filtro-btn { padding: 0.5rem 1.2rem; border: 2px solid #ddd; border-radius: 50px; background: white; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+    .filtro-btn.active, .filtro-btn:hover { border-color: var(--color-primary); background: var(--color-primary); color: white; }
     .org-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-    .org-card { background: white; border: 1px solid var(--cinza-medio); border-radius: var(--raio); padding: 1.5rem; transition: box-shadow 0.2s; }
-    .org-card:hover { box-shadow: var(--sombra); }
-    .org-tag { display: inline-block; padding: 0.2rem 0.7rem; background: var(--verde-claro); color: var(--verde-escuro); border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.8rem; }
+    .org-card { background: white; border: 1px solid #e5e5e5; border-radius: var(--radius); padding: 1.5rem; transition: box-shadow 0.2s; }
+    .org-card:hover { box-shadow: var(--shadow); }
+    .org-tag { display: inline-block; padding: 0.2rem 0.7rem; background: #e8faf2; color: #00875a; border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.8rem; }
     .org-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .org-desc { font-size: 0.85rem; color: var(--cinza-texto); line-height: 1.5; }
-    .org-ra { font-size: 0.78rem; color: var(--cinza-texto); margin-top: 0.8rem; }
-    .form-cadastro { max-width: 700px; margin: 3rem auto 0; background: var(--cinza-claro); padding: 2rem; border-radius: var(--raio); }
+    .org-desc { font-size: 0.85rem; color: #555; line-height: 1.5; }
+    .org-ra { font-size: 0.78rem; color: #888; margin-top: 0.8rem; }
+    .form-cadastro { max-width: 700px; margin: 3rem auto 0; background: #f4f3f3; padding: 2rem; border-radius: var(--radius); }
     .form-cadastro h3 { margin-bottom: 1rem; }
     .form-group { margin-bottom: 1rem; }
     .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem 1rem; border: 1px solid var(--cinza-medio); border-radius: var(--raio); font-family: var(--fonte); font-size: 0.9rem; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.7rem 1rem; border: 1px solid #ddd; border-radius: var(--radius); font-family: var(--font-main); font-size: 0.9rem; }
     .form-group textarea { resize: vertical; min-height: 80px; }
   </style>
 </head>
 <body>
-
   <nav>
-    <a href="/distrito-impacto-site/" class="nav-logo">Distrito<span>Impacto</span></a>
-    <ul class="nav-links">
-      <li><a href="/distrito-impacto-site/">Início</a></li>
-      <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
-      <li><a href="/distrito-impacto-site/mapeamento/" class="active">Mapeamento</a></li>
-      <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
-      <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
-      <li><a href="/distrito-impacto-site/mapeamento/" class="nav-cta">Cadastrar organização</a></li>
-    </ul>
-    <button class="nav-menu-btn">&#9776;</button>
+    <div class="container nav-container">
+      <a href="/distrito-impacto-site/" class="nav-logo">Distrito<span>Impacto</span></a>
+      <ul class="nav-links">
+        <li><a href="/distrito-impacto-site/">Início</a></li>
+        <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
+        <li><a href="/distrito-impacto-site/mapeamento/" class="active">Mapeamento</a></li>
+        <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
+        <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
+        <li><a href="/distrito-impacto-site/mapeamento/" class="nav-cta">Cadastrar organização</a></li>
+      </ul>
+      <button class="nav-menu-btn">&#9776;</button>
+    </div>
   </nav>
 
-  <section class="hero" style="min-height: 42vh; padding: 80px 5%;">
-    <div class="hero-inner">
-      <span class="hero-tag">Plataforma de Dados · DF</span>
-      <h1>Mapeamento do<br/><span>Ecossistema de Impacto</span></h1>
-      <p>Explore organizações, negócios e iniciativas mapeadas no Distrito Federal. Filtre por tipo, área temática e estágio de maturidade.</p>
+  <section class="hero" style="min-height: 42vh; padding: 80px 0;">
+    <div class="container">
+      <div class="hero-inner">
+        <span class="hero-tag">Plataforma de Dados · DF</span>
+        <h1>Mapeamento do<br/><span>Ecossistema de Impacto</span></h1>
+        <p>Explore organizações, negócios e iniciativas mapeadas no Distrito Federal. Filtre por tipo, área temática e estágio de maturidade.</p>
+      </div>
     </div>
   </section>
 
-  <section class="sobre" style="padding-top: 3rem;">
-    <div id="filtros-area" class="mapa-filtros">
-      <button class="filtro-btn active" data-filtro="todos">Todos</button>
-      <button class="filtro-btn" data-filtro="ong">ONG / Associação</button>
-      <button class="filtro-btn" data-filtro="startup">Startup de Impacto</button>
-      <button class="filtro-btn" data-filtro="empresa">Empresa B / ESG</button>
-      <button class="filtro-btn" data-filtro="fundo">Fundo / Investidor</button>
-      <button class="filtro-btn" data-filtro="academia">Academia / Pesquisa</button>
-    </div>
-
-    <p class="contador">Exibindo <span id="count">0</span> iniciativas mapeadas</p>
-
-    <div id="org-grid" class="org-grid">
-      <p class="empty-msg">Carregando iniciativas...</p>
-    </div>
-
-    <div class="form-cadastro" id="cadastro">
-      <h3>Cadastre sua organização</h3>
-      <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: var(--cinza-texto);">Faça parte do mapeamento do ecossistema de impacto do DF. O cadastro é gratuito e aberto.</p>
-      <form id="form-org" onsubmit="enviarCadastro(event)">
-        <div class="form-group">
-          <label>Nome da organização *</label>
-          <input type="text" id="nome" required placeholder="Ex: Instituto XYZ"/>
-        </div>
-        <div class="form-group">
-          <label>Tipo *</label>
-          <select id="tipo" required>
-            <option value="">Selecione...</option>
-            <option value="ong">ONG / Associação</option>
-            <option value="startup">Startup de Impacto</option>
-            <option value="empresa">Empresa B / ESG</option>
-            <option value="fundo">Fundo / Investidor</option>
-            <option value="academia">Academia / Pesquisa</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Região Administrativa *</label>
-          <input type="text" id="regiao" required placeholder="Ex: Brasília, Taguatinga, Gama..."/>
-        </div>
-        <div class="form-group">
-          <label>Descrição breve *</label>
-          <textarea id="descricao" required placeholder="Em até 150 caracteres, descreva o que sua organização faz."></textarea>
-        </div>
-        <div class="form-group">
-          <label>Site ou Instagram (opcional)</label>
-          <input type="text" id="site" placeholder="https://..."/>
-        </div>
-        <button type="submit" class="btn-primary" style="margin-top: 0.5rem;">Enviar cadastro</button>
-      </form>
-      <p id="form-msg" style="margin-top: 1rem; font-size: 0.9rem; color: var(--verde); display: none;">Cadastro enviado! Entraremos em contato em breve.</p>
+  <section style="padding: 3rem 0 6rem;">
+    <div class="container">
+      <div id="filtros-area" class="mapa-filtros">
+        <button class="filtro-btn active" data-filtro="todos">Todos</button>
+        <button class="filtro-btn" data-filtro="ong">ONG / Associação</button>
+        <button class="filtro-btn" data-filtro="startup">Startup de Impacto</button>
+        <button class="filtro-btn" data-filtro="empresa">Empresa B / ESG</button>
+        <button class="filtro-btn" data-filtro="fundo">Fundo / Investidor</button>
+        <button class="filtro-btn" data-filtro="academia">Academia / Pesquisa</button>
+      </div>
+      <p class="contador">Exibindo <span id="count">0</span> iniciativas mapeadas</p>
+      <div id="org-grid" class="org-grid">
+        <p class="empty-msg">Carregando iniciativas...</p>
+      </div>
+      <div class="form-cadastro" id="cadastro">
+        <h3>Cadastre sua organização</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 1.5rem; color: #666;">Faça parte do mapeamento do ecossistema de impacto do DF. O cadastro é gratuito e aberto.</p>
+        <form id="form-org" onsubmit="enviarCadastro(event)">
+          <div class="form-group">
+            <label>Nome da organização *</label>
+            <input type="text" id="nome" required placeholder="Ex: Instituto XYZ"/>
+          </div>
+          <div class="form-group">
+            <label>Tipo *</label>
+            <select id="tipo" required>
+              <option value="">Selecione...</option>
+              <option value="ong">ONG / Associação</option>
+              <option value="startup">Startup de Impacto</option>
+              <option value="empresa">Empresa B / ESG</option>
+              <option value="fundo">Fundo / Investidor</option>
+              <option value="academia">Academia / Pesquisa</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Região Administrativa *</label>
+            <input type="text" id="regiao" required placeholder="Ex: Brasília, Taguatinga, Gama..."/>
+          </div>
+          <div class="form-group">
+            <label>Descrição breve *</label>
+            <textarea id="descricao" required placeholder="Em até 150 caracteres, descreva o que sua organização faz."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Site ou Instagram (opcional)</label>
+            <input type="text" id="site" placeholder="https://..."/>
+          </div>
+          <button type="submit" class="btn btn-primary">Enviar cadastro</button>
+          <p id="form-msg" style="display:none; margin-top:1rem; color: var(--color-primary); font-weight:600;">Cadastro enviado! Entraremos em contato em breve.</p>
+        </form>
+      </div>
     </div>
   </section>
 
   <footer>
     <div class="container">
-      <div class="footer-logo">Distrito<span>Impacto</span></div>
-      <p>Plataforma do ecossistema de impacto do Distrito Federal.</p>
-      <ul class="footer-links">
-        <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
-        <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
-        <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
-        <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
-      </ul>
-      <p class="footer-copy">&copy; 2025 Distrito de Impacto &middot; Todos os direitos reservados</p>
+      <div class="footer-top">
+        <div class="footer-about">
+          <div class="footer-logo">Distrito<span>Impacto</span></div>
+          <p>Plataforma do ecossistema de impacto do Distrito Federal.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Páginas</h4>
+          <ul>
+            <li><a href="/distrito-impacto-site/manifesto/">Manifesto</a></li>
+            <li><a href="/distrito-impacto-site/mapeamento/">Mapeamento</a></li>
+            <li><a href="/distrito-impacto-site/eventos/">Eventos</a></li>
+            <li><a href="/distrito-impacto-site/quem-somos/">Quem Somos</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Distrito de Impacto · Todos os direitos reservados</span>
+      </div>
     </div>
   </footer>
 
-  <script src="../assets/js/main.js"></script>
   <script>
     const BASE = 'https://1sbrobertoo.github.io/distrito-impacto-site';
     let todasOrgs = [];
-
     async function carregarOrgs() {
       try {
         const res = await fetch(BASE + '/data/organizacoes.json');
@@ -136,7 +145,6 @@
         document.getElementById('count').textContent = '0';
       }
     }
-
     function renderOrgs(orgs) {
       const grid = document.getElementById('org-grid');
       document.getElementById('count').textContent = orgs.length;
@@ -153,7 +161,6 @@
         </div>
       `).join('');
     }
-
     document.querySelectorAll('.filtro-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
@@ -162,7 +169,6 @@
         renderOrgs(f === 'todos' ? todasOrgs : todasOrgs.filter(o => o.tipo === f));
       });
     });
-
     function enviarCadastro(e) {
       e.preventDefault();
       const nova = {
@@ -177,7 +183,6 @@
       document.getElementById('form-org').reset();
       document.getElementById('form-msg').style.display = 'block';
     }
-
     carregarOrgs();
   </script>
 </body>
